@@ -1,27 +1,26 @@
 module.exports = function check(str, bracketsConfig) {
-  // your solution
-  let brackets = bracketsConfig.join('').replace(/,/g, '');
-        let stack = [];
-    for (let bracket of str) {
-            let bracketsIndex = brackets.indexOf(bracket)
+
+  let myBrackets = bracketsConfig.join('').replace(/,/g, '');
+        let bunch = [];
+
+    for (let bracketOne of str) {
+            let bracketsIndex = myBrackets.indexOf(bracketOne)
 
             if (bracketsIndex % 2 === 0) {
                 
-                if (bracket === brackets[bracketsIndex + 1] && stack[stack.length - 1] === bracketsIndex){
-                    stack.pop();
-                } else if (bracket === brackets[bracketsIndex + 1] && stack[stack.length - 1] !== bracketsIndex) {
-                    stack.push(bracketsIndex)
+                if (bracketOne === myBrackets[bracketsIndex + 1] && bunch[bunch.length - 1] === bracketsIndex){ bunch.pop();
+                } else if (bracketOne === myBrackets[bracketsIndex + 1] && bunch[bunch.length - 1] !== bracketsIndex) {
+                    bunch.push(bracketsIndex)
                 }
-                else{
-                    stack.push(bracketsIndex)
+                else{ bunch.push(bracketsIndex)
                 }
             } 
             else {
-                if (stack.pop() !== bracketsIndex-1){
+                if (bunch.pop() !== bracketsIndex-1){
                     return false;
                 }
             }
-            
         }
-        return stack.length === 0
+        return bunch.length === 0;
+        
 }
